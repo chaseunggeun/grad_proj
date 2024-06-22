@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>GPTI-openkakao</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Custom Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/styles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+        }
+    </style>
+    <style>
+        .btn-warning {
+            background: #ffd862bd !important;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container px-5">
+                <a class="navbar-brand" href="/"><span class="fw-bolder text-primary">
+                        GPTI</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        {{#if user }}
+                        <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                        {{else}}
+                        <li class="nav-item"><a class="nav-link" href="/login">login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        {{/if}}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Projects Section-->
+        <section class="py-5">
+            <div class="container px-5 mb-5">
+                <div class="text-center mb-3">
+                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">오픈카톡</span></h1>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-9 col-xxl-8">
+                        <!-- Modal Trigger Button -->
+                        <div class="justify-content-center row mt-lg-5 mt-4 mb-3">
+                            <div class="align-items-center col-12 d-flex justify-content-between mt-3">
+                                <button type="button" class="btn btn-outline-primary btn-sm col-3 mb-2"
+                                    data-bs-toggle="modal" data-bs-target="#dataInputModal">
+                                    내 링크 만들기
+                                </button>
+                                <form id="mbtiForm">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit"
+                                            class="btn btn-outline-dark btn-sm mx-2 text-nowrap">전체보기</button>
+                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                            id="selectMbti">
+                                            <option value="" selected disabled hidden>정렬</option>
+                                            <option value="ENFJ" {{#if (eq mbti "ENFJ" )}} selected{{/if}}>ENFJ</option>
+                                            <option value="ENFP" {{#if (eq mbti "ENFP" )}} selected{{/if}}>ENFP</option>
+                                            <option value="ENTJ" {{#if (eq mbti "ENTJ" )}} selected{{/if}}>ENTJ</option>
+                                            <option value="ENTP" {{#if (eq mbti "ENTP" )}} selected{{/if}}>ENTP</option>
+                                            <option value="ESFJ" {{#if (eq mbti "ESFJ" )}} selected{{/if}}>ESFJ</option>
+                                            <option value="ESFP" {{#if (eq mbti "ESFP" )}} selected{{/if}}>ESFP</option>
+                                            <option value="ESTJ" {{#if (eq mbti "ESTJ" )}} selected{{/if}}>ESTJ</option>
+                                            <option value="ESTP" {{#if (eq mbti "ESTP" )}} selected{{/if}}>ESTP</option>
+                                            <option value="INFJ" {{#if (eq mbti "INFJ" )}} selected{{/if}}>INFJ</option>
+                                            <option value="INFP" {{#if (eq mbti "INFP" )}} selected{{/if}}>INFP</option>
+                                            <option value="INTJ" {{#if (eq mbti "INTJ" )}} selected{{/if}}>INTJ</option>
+                                            <option value="INTP" {{#if (eq mbti "INTP" )}} selected{{/if}}>INTP</option>
+                                            <option value="ISFJ" {{#if (eq mbti "ISFJ" )}} selected{{/if}}>ISFJ</option>
+                                            <option value="ISFP" {{#if (eq mbti "ISFP" )}} selected{{/if}}>ISFP</option>
+                                            <option value="ISTJ" {{#if (eq mbti "ISTJ" )}} selected{{/if}}>ISTJ</option>
+                                            <option value="ISTP" {{#if (eq mbti "ISTP" )}} selected{{/if}}>ISTP</option>
+                                        </select>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 1-->
+                    {{#each items}}
+                    <div class="card overflow-hidden shadow rounded-4 border-0 mb-3">
+                        <div class="card-body p-0">
+                            <div class="align-items-center">
+                                <div class="p-1">
+                                    <div class="card-body">
+                                        <div class="justify-content-center pb-2 pt-2 row">
+                                            <div class="col-11 d-flex align-items-center justify-content-between mt-3">
+                                                <h3 class="card-title col-10">{{this.intro}}</h3>
+                                                <a href="{{this.kakao_address}}"
+                                                    class="btn btn-warning col-2 fw-bold p-3 text-dark w-auto">kakao</a>
+                                            </div>
+                                            <p class="card-text col-11">{{this.mbti}} / {{this.main_category}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+
+                    <nav aria-label="Page navigation example">
+                        {{#with paginator}}
+                        <ul class="pagination justify-content-center">
+                            {{#if hasPrev}}
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="/openkakao/?page={{prevPage}}&mbti={{@root.mbti}}">Previous</a>
+                                {{else}}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Previous</a>
+                                {{/if}}
+                            </li>
+
+                            {{#each pageList}}
+                            {{#if (eq . @root.paginator.page)}}
+                            <li class="page-item active"><a class="page-link" href="#">{{.}}</a>
+                                {{else}}
+                            <li class="page-item"><a class="page-link"
+                                    href="/openkakao/?page={{.}}&mbti={{@root.mbti}}">{{.}}</a>
+                                {{/if}}
+                            </li>
+                            {{/each}}
+
+                            {{#if hasNext}}
+                            <li class="page-item">
+                                <a class="page-link" href="/openkakao/?page={{nextPage}}&mbti={{@root.mbti}}">Next</a>
+                                {{else}}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Next</a>
+                                {{/if}}
+                            </li>
+                        </ul>
+                        {{/with}}
+                    </nav>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="dataInputModal" tabindex="-1" aria-labelledby="dataInputModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dataInputModalLabel">내 링크 만들기</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/addData" method="POST" onsubmit="return validateForm()">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="intro" class="form-label">한줄소개:</label>
+                            <input type="text" class="form-control" id="intro" name="intro" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mbti" class="form-label">MBTI:</label>
+                            <select class="select col-6 form-control" id="mbti" name="mbti" required>
+                                <option value="ENFJ">ENFJ</option>
+                                <option value="ENFP">ENFP</option>
+                                <option value="ENTJ">ENTJ</option>
+                                <option value="ENTP">ENTP</option>
+                                <option value="ESFJ">ESFJ</option>
+                                <option value="ESFP">ESFP</option>
+                                <option value="ESTJ">ESTJ</option>
+                                <option value="ESTP">ESTP</option>
+                                <option value="INFJ">INFJ</option>
+                                <option value="INFP">INFP</option>
+                                <option value="INTJ">INTJ</option>
+                                <option value="INTP">INTP</option>
+                                <option value="ISFJ">ISFJ</option>
+                                <option value="ISFP">ISFP</option>
+                                <option value="ISTJ">ISTJ</option>
+                                <option value="ISTP">ISTP</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="main_category" class="form-label">관심사:</label>
+                            <input type="text" class="form-control" id="main_category" name="main_category" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kakao_address" class="form-label">오픈카톡 주소:</label>
+                            <input type="text" class="form-control" id="kakao_address" name="kakao_address"
+                                placeholder="ex) https://open.kakao.com/~~~~" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <footer class="bg-white py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="small m-0">MIT License</div>
+                    <div class="small m-0">Copyright &copy; 2023 GPTI talkative_sheep_warrior</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="../js/scripts.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('select#selectMbti').change(function () {
+                var selectedValue = $(this).val();
+                window.location.href = '/openkakao/?mbti=' + selectedValue;
+
+            })
+        })
+
+        function validateForm() {
+            // 입력된 주소 가져오기
+            var kakaoAddress = document.getElementById("kakao_address").value;
+
+            // 주소가 https://open.kakao.com로 시작하는지 확인
+            if (kakaoAddress.startsWith("https://open.kakao.com")) {
+                // 유효한 경우 폼 제출 허용
+                return true;
+            } else {
+                // 유효하지 않은 경우 사용자에게 경고 메시지 표시 및 폼 제출 막기
+                alert("올바른 오픈카톡 주소를 입력해주세요.");
+                return false;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

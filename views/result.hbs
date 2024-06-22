@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>GTPI</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Custom Google font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/styles.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<style>
+* {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+        }
+</style>
+  <style>
+    /* MBTI 및 호환성 바 스타일링 */
+    .compatibility-bar {
+      height: 40px;
+      background-color: #8595a6;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+      margin-top: 10px;
+    }
+
+    .compatibility-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: {{compatibility.rate}}%;
+      height: 100%;
+      background: linear-gradient(to right, #007bff, #00ff00);
+      /* 변경 가능한 그라데이션 */
+    }
+
+
+  </style>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+  <main class="flex-shrink-0">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+      <div class="container px-5">
+        <a class="navbar-brand" href="/"><span class="fw-bolder text-primary">
+            GPTI</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            {{#if user }}
+            <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            {{else}}
+            <li class="nav-item"><a class="nav-link" href="/login">login</a></li>
+            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Projects Section-->
+    <section class="pt-5 pb-0">
+      <div class="container mb-5">
+        <div class="text-center mb-5">
+          <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">결과</span></h1>
+        </div>
+        <div class="row gx-5 justify-content-center">
+          <div class="col-lg-12 col-xl-9 col-xxl-8">
+            <div class="jumbotron">
+              <!-- MBTI 및 호환성 바 -->
+              <h3 class="text-center mt-3"><b class="text-success">{{compatibility.mbti}}</b>와  <b class="text-info"> {{compatibility.user_mbti}}</b>의 <b class="text-normal"> {{compatibility.word}}</b> 궁합은?</h3>
+              <div class="justify-content-center row mt-lg-5 mt-4 mb-3">
+                <div class="col-10 d-flex align-items-center justify-content-center mt-3">
+                  <div class="fs-4 col-6 fw-bold text-start">궁합도!</div>
+                  <div class="col-6 fs-4 fw-bold text-end text-gradient">{{compatibility.rate}}%</div>
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center"> <!-- d-flex, align-items-center 추가 -->
+                  <div class="compatibility-bar mb-5 mt-5 col-10"></div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="card mb-4 rounded-3 shadow-sm p-0">
+                    <div class="card-header py-3">
+                      <h4 class="my-0 fw-normal">장점</h4>
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{{compatibility.advantage}}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="card mb-4 rounded-3 shadow-sm p-0">
+                    <div class="card-header py-3">
+                      <h4 class="my-0 fw-normal">단점</h4>
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-unstyled mt-3 mb-4 p-0">
+                        <li>{{{compatibility.warning}}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="card mb-4 rounded-3 shadow-sm p-0">
+                    <div class="card-header py-3">
+                      <h4 class="my-0 fw-normal">조심할 점</h4>
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{{compatibility.precaution}}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Call to action section-->
+    <section class="py-5 bg-gradient-primary-to-secondary text-white">
+      <div class="container px-5 my-5">
+        <div class="text-center">
+          <h2 class="display-4 fw-bolder mb-4">오픈카톡으로 다른 MBTI의 사람들과 소통하세요</h2>
+          <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" data-bs-toggle="modal"
+            data-bs-target="#exampleModal" href="contact.html">오픈카톡목록 보기</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form action="/score" method="POST">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">결과의 만족도를 평가해주세요</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <div class="mb-2">
+                <label>
+                  <input type="radio" name="score" value="1">매우 불만족
+                </label>
+              </div>
+              <div class="mb-2">
+                <label>
+                  <input type="radio" name="score" value="2">불만족
+                </label>
+              </div>
+              <div class="mb-2">
+                <label>
+                  <input type="radio" name="score" value="3">보통
+                </label>
+              </div>
+              <div class="mb-2">
+                <label>
+                  <input type="radio" name="score" value="4">만족
+                </label>
+              </div>
+              <div class="mb-2">
+                <label>
+                  <input type="radio" name="score" value="5">매우 만족
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+            <button type="submit" class="btn btn-primary">제출</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <!-- Footer-->
+  <footer class="bg-white py-4 mt-auto">
+    <div class="container px-5">
+      <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+        <div class="col-auto">
+          <div class="small m-0">MIT License</div>
+          <div class="small m-0">Copyright &copy; 2023 GPTI talkative_sheep_warrior</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>
